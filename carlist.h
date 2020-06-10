@@ -6,56 +6,45 @@ struct ListNode{
     struct ListNode *next;
 };
 
-ListNode * initList();
-ListNode * insertElem(ListNode * p,int ParkingCar);
-//向列表中加入元素
-ListNode * delElem(ListNode * p,int add);
-//将列表中第add个元素删除
-ListNode *amendElem(ListNode * p,int add,int newElem);
-//将列表中第add个元素内容更改为newElem数据域中的内容
-int selectElem(ListNode * p,int ParkingCar);
-//查找列表中的某个结点的内容
-void display(ListNode *p);
 
-
-
-ListNode *initList(){
-    ListNode *p=(ListNode*)malloc(sizeof(ListNode));//创建头结点
-    ListNode *temp=p;//只想头结点的指针，用于遍历链表
-    for(int i=1;i<5;i++){
-        ListNode *a=(ListNode*)malloc(sizeof(ListNode));
-        a->ParkingCar=i;
-        a->next=NULL;
-        temp->next=a;
-        temp=temp->next;
-    }
+struct ListNode *initList(){
+    struct ListNode *p=(struct ListNode*)malloc(sizeof(struct ListNode));//创建头结点
+    p->ParkingCar=NULL;
+    p->next=NULL;
     return p;
 }
 
 
-ListNode * insertElem(ListNode * p,int ParkingCar){
-    ListNode * c=(ListNode*)malloc(sizeof(ListNode));
+struct ListNode * insertElem(struct ListNode * p,struct car *ParkingCar){
+    /*申请新节点并赋值*/
+    struct ListNode *c=(struct ListNode*)malloc(sizeof(struct ListNode));
     c->ParkingCar=ParkingCar;
-    c->next=temp->next;
+    c->next=NULL;
+    /*寻找尾结点*/
+    struct ListNode *temp=p;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    /*新结点插入链表尾部*/
     temp->next=c;
     return p;
 }
 
 
-ListNode * delElem(ListNode * p,int add){
-    ListNode * temp=p;
+struct ListNode * delElem(struct ListNode * p,int add){
+    struct ListNode * temp=p;
     for(int i=1;i<add;i++){
         temp=temp->next;
     }
-    ListNode * del=temp->next;
+    struct ListNode * del=temp->next;
     temp->next=temp->next->next;
     free(del);
     return p;
 }
 
 
-ListNode *amendElem(ListNode * p,int add,int newElem){
-    ListNode * temp=p;
+struct ListNode *amendElem(struct ListNode * p,int add,int newElem){
+    struct ListNode * temp=p;
     temp=temp->next;
     for(int i=1;i<add;i++){
         temp=temp->next;
@@ -65,12 +54,12 @@ ListNode *amendElem(ListNode * p,int add,int newElem){
 }
 
 
-int selectElem(ListNode * p,int ParkingCar){
-    ListNode * j=p;
+int selectElem(struct ListNode * p,int ParkingCar){
+    struct ListNode * j=p;
     int i=1;
     while(j->next){
         j=j->next;
-        if(t->ParkingCar==ParkingCar){
+        if(j->ParkingCar==ParkingCar){
             return i;
         }
         i++;
@@ -79,11 +68,11 @@ int selectElem(ListNode * p,int ParkingCar){
 }
 
 
-void display(ListNode *p){
-    ListNode* temp=p;
+void display(struct ListNode *p){
+    struct ListNode *temp=p;
     while(temp->next){
         temp=temp->next;
-        printf("%d",temp->ParkingCar);
+        printf("%s,%s,%s",temp->ParkingCar->LicenseNum,temp->ParkingCar->color,temp->ParkingCar->brand);
     }
     printf("\n");
 }

@@ -1,5 +1,10 @@
+#ifndef _CAR_H
+#define _CAR_H
+
 struct car{
-    char *LicenseNum;
-    char *color;
-    char *brand;
+    char LicenseNum[20];
+    char color[10];
+    char brand[30];
 };
+
+#endif
