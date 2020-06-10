@@ -34,7 +34,7 @@ int ParkingIsFull(struct ListNode *p){
 
 
 struct ListNode * insertElem(struct ListNode * p,struct car *ParkingCar){
-    /*申请新节点并赋值*/
+    /*申请新结点并赋值*/
     struct ListNode *c=(struct ListNode*)malloc(sizeof(struct ListNode));
     c->ParkingCar=ParkingCar;
     c->next=NULL;
